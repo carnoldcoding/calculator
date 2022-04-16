@@ -61,6 +61,7 @@ const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 const topLine = document.querySelector(".top");
 const bottomLine = document.querySelector(".bottom");
+const btnSound = document.querySelector("#audio");
 
 //Store values
 numbers.forEach((number)=>{
@@ -102,6 +103,13 @@ clear.addEventListener("click", reset);
 //Debug
 buttons.forEach((button)=>{
     button.addEventListener("click", display);
+    button.addEventListener("click", ()=>{
+        button.style.boxShadow = "inset 0px 5px 10px 3px rgba(0,0,0,.8)";
+        // btnSound.play();
+        setTimeout(()=>{
+            button.style.boxShadow = "inset 0px -5px 5px 2px rgba(0,0,0,.5)";
+        }, 100)
+    })
     button.addEventListener("click", ()=> console.log(`
         firstValue: ${firstValue}
         operator: ${operator}

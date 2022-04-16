@@ -21,6 +21,7 @@
     background: rgb(56, 56, 56);
     border-radius: 5%;
     padding: .5rem;
+    border: 5px outset rgb(161, 161, 161);
 }
 
 .display{
@@ -63,6 +64,8 @@
     margin: .4rem;
     border-radius: 10%;
     user-select: none;
+
+    box-shadow: inset 0px -5px 5px 2px rgba(0,0,0,.5);
 }
 
 .button:hover{
