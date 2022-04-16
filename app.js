@@ -1,3 +1,8 @@
+//Query DOM
+const buttons = document.querySelectorAll(".button");
+const topLineDOM = document.querySelector(".top");
+const bottomLineDOM = document.querySelector(".bottom");
+
 //Create an object literal for the calculator because we won't be using more
 //Than one instance of the calculator.
 
@@ -62,14 +67,13 @@ const Calculator = {
         Calculator.storedValue = 0;
         Calculator.bottomLine = "";
         Calculator.topLine = "";
+    },
+    display: ()=>{
+        topLineDOM.textContent = Calculator.storedValue;
+        bottomLineDOM.textContent = Calculator.currentValue;
     }
 
 }
-
-//Query DOM
-const buttons = document.querySelectorAll(".button");
-const topLineDOM = document.querySelector(".top");
-const bottomLineDOM = document.querySelector(".bottom");
 
 //Add Functionality
 buttons.forEach((button)=>{button.addEventListener("click", ()=>{
@@ -81,6 +85,7 @@ buttons.forEach((button)=>{button.addEventListener("click", ()=>{
     else if(button.textContent=="C"){
         Calculator.clear();
     }
+    Calculator.display();
 
     console.log(`
         ==Results==
@@ -88,5 +93,7 @@ buttons.forEach((button)=>{button.addEventListener("click", ()=>{
         Stored: ${Calculator.storedValue}
         Operator: ${Calculator.operator}
         Result: ${Calculator.result}
+        TopLine: ${Calculator.topLine}
+        BottomLine: ${Calculator.bottomLine}
     `)
 })})
