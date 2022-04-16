@@ -14,23 +14,32 @@
     background-position: fixed;
 }
 
-.value-display{
+.calculator{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    background: white;
-    font-size: 2rem;
-    width: 15vw;
-    text-align: center;
-    border: 2px solid rgb(105, 105, 105);
-}
-
-.calculator{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    background:rgb(105, 105, 105);
+    align-items: center;
+    background: rgb(56, 56, 56);
     border-radius: 5%;
     padding: .5rem;
+}
+
+.display{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    align-items: flex-end;
+    border-radius: .5rem;
+    width: 90%;
+    margin: 1rem 0;
+}
+
+.display-line{
+    font-size: 2rem;
+}
+
+.calculator-buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .button{
