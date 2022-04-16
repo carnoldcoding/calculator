@@ -5,7 +5,7 @@ const Calculator = {
     //Attributes
     currentValue: 0,
     storedValue: 0,
-    result: 0,
+    result: null,
     operator: "",
 
     topLine: "",
@@ -21,6 +21,9 @@ const Calculator = {
         else if(Calculator.operator=="-"){Calculator.subtract()}
         else if(Calculator.operator=="/"){Calculator.divide()}
         else if(Calculator.operator=="*"){Calculator.multiply()}
+        Calculator.storedValue = Calculator.result;
+        Calculator.currentValue = 0;
+        Calculator.bottomLine = "";
     },
 
     isNumber: (value)=>{return(value >= 0 && value <=9 ? true : false)},
@@ -34,22 +37,31 @@ const Calculator = {
     },
     addToStorage: (value)=>{
         if(!Calculator.isNumber(value)){
-            if(value=="="){
-                Calculator.calculate();
-                Calculator.storedValue = Calculator.result;
+            if(Calculator.result == null){
+                if(value != "="){
+                    //Store operator and value
+                    Calculator.operator = value;
+                    Calculator.storedValue = Calculator.currentValue;
+        
+                    //Reset Current
+                    Calculator.currentValue = 0;
+                    Calculator.bottomLine = "";
+                }
+                    
+            }else{
+                if(value != "="){
+                    Calculator.operator = value;
+                }
             }
-            else{
-                //Store Operator
-                Calculator.operator = value;
-                //Store Value
-                Calculator.topLine = Calculator.bottomLine;
-                Calculator.storedValue = Calculator.currentValue;
-                
-                //Reset Current
-                Calculator.currentValue = 0;
-                Calculator.bottomLine = "";
-            }
+
         }
+    },
+    clear: ()=>{
+        Calculator.result = 0;
+        Calculator.currentValue = 0;
+        Calculator.storedValue = 0;
+        Calculator.bottomLine = "";
+        Calculator.topLine = "";
     }
 
 }
@@ -63,6 +75,13 @@ const bottomLineDOM = document.querySelector(".bottom");
 buttons.forEach((button)=>{button.addEventListener("click", ()=>{
     Calculator.addToCurrent(button.textContent);
     Calculator.addToStorage(button.textContent);
+    if(button.textContent=="="){
+        Calculator.calculate();
+    }
+    else if(button.textContent=="C"){
+        Calculator.clear();
+    }
+
     console.log(`
         ==Results==
         Current: ${Calculator.currentValue}
