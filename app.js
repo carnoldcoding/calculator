@@ -19,9 +19,13 @@ const calculate = function(){
 }
 
 const evaluate = function(){
-    firstValue = calculate();
-    secondValue = "";
-    equation = "0";
+    if(operator){
+        firstValue = calculate();
+        secondValue = "";
+        equation = "0";
+        operator = null;
+    }else(alert("Didn't select an operator"))
+        
 }
 
 const appendNumber = function(value){
@@ -42,7 +46,7 @@ const display = function(){
 }
 
 const reset = function(){
-    firstValue = "0";
+    firstValue = "";
     secondValue = "";
     equation = "";
     bottomLine.textContent="0";
@@ -68,11 +72,15 @@ operators.forEach((operator)=>{
         alterEquation();
         shiftValues();
     })
+    operator.addEventListener("click", ()=>{
+        
+    })
 })
 
 //Evaluate and Clear
 equals.addEventListener("click", evaluate);
 clear.addEventListener("click", reset);
+
 //Debug
 buttons.forEach((button)=>{
     button.addEventListener("click", display);
