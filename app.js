@@ -1,7 +1,8 @@
 let firstValue = "";
 let secondValue = "";
 let operator = null;
-let equation = "0";
+let equation = "";
+let cont = false;
 
 const calculate = function(){
         a = Number(secondValue);
@@ -21,9 +22,9 @@ const calculate = function(){
 const evaluate = function(){
     if(operator){
         firstValue = calculate();
-        secondValue = "";
-        equation = "0";
-        operator = null;
+        // secondValue = "";
+        // equation = "0";
+        // operator = null;
     }else(alert("Didn't select an operator"))
         
 }
@@ -68,17 +69,34 @@ numbers.forEach((number)=>{
 
 operators.forEach((operator)=>{
     operator.addEventListener("click", ()=> {
-        storeOperator(operator.textContent);
-        alterEquation();
-        shiftValues();
-    })
-    operator.addEventListener("click", ()=>{
+        if(operator && firstValue.length > 0 && secondValue.length > 0){cont = true;}
         
+        if(firstValue.length < 1){
+            alert("You forgot to add an initial value");
+        }
+        else if(cont){
+            evaluate();
+            alterEquation();
+            storeOperator(operator.textContent);
+            secondValue = firstValue;
+            firstValue = "";          
+        }
+        else{
+            storeOperator(operator.textContent);
+            alterEquation();
+            shiftValues();
+        }
     })
 })
 
 //Evaluate and Clear
 equals.addEventListener("click", evaluate);
+equals.addEventListener("click", ()=>{
+    cont = false;
+    secondValue = "";
+    equation = null;
+    operator = null;
+})
 clear.addEventListener("click", reset);
 
 //Debug
